@@ -7,10 +7,10 @@ on:
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
           fetch-depth: '0'
@@ -79,31 +79,19 @@ jobs:
           done
 
       - name: Upload IPA Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: TelegramCustom-IPA
           path: /Users/Shared/telegram-ios/build/artifacts/TelegramCustom.ipa
 
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: build-${{ env.BUILD_NUMBER }}
-          release_name: Telegram Custom ${{ env.APP_VERSION }} (${{ env.BUILD_NUMBER }})
-          body: |
-            Telegram Custom (Sideloadly Dual App) for iOS ${{ env.APP_VERSION }} (${{ env.BUILD_NUMBER }})
+          name: Telegram Custom ${{ env.APP_VERSION }} (${{ env.BUILD_NUMBER }})
+          body: Telegram Custom (Sideloadly Dual App) for iOS ${{ env.APP_VERSION }} (${{ env.BUILD_NUMBER }})
+          files: /Users/Shared/telegram-ios/build/artifacts/TelegramCustom.ipa
           draft: false
           prerelease: false
-
-      - name: Upload Release IPA
-        id: upload-release-ipa 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /Users/Shared/telegram-ios/build/artifacts/TelegramCustom.ipa
-          asset_name: TelegramCustom.ipa
-          asset_content_type: application/octet-stream
