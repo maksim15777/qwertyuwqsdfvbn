@@ -33,7 +33,8 @@ jobs:
           sudo cp -R $GITHUB_WORKSPACE/. /Users/Shared/telegram-ios/
           sudo chown -R $(whoami) /Users/Shared/telegram-ios
           cd /Users/Shared/telegram-ios
-          git submodule update --init --recursive
+          git submodule sync --recursive
+          git submodule update --init --recursive --force
 
       - name: Configure Telegram API Keys
         env:
