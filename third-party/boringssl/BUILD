@@ -52,6 +52,8 @@ posix_copts = [
     "-Wshadow",
     "-fno-common",
     "-Wno-unused-but-set-variable",
+    "-Wno-array-parameter",
+    "-Wno-error=array-parameter",
 
     # Modern build environments should be able to set this to use atomic
     # operations for reference counting rather than locks. However, it's
