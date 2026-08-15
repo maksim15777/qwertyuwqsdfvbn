@@ -29,8 +29,10 @@ jobs:
         run: |
           set -x
           sudo mkdir -p /Users/Shared
-          cp -R $GITHUB_WORKSPACE /Users/Shared/
-          mv /Users/Shared/$(basename $GITHUB_WORKSPACE) /Users/Shared/telegram-ios
+          sudo rm -rf /Users/Shared/telegram-ios
+          sudo cp -R $GITHUB_WORKSPACE /Users/Shared/telegram-ios
+          cd /Users/Shared/telegram-ios
+          git submodule update --init --recursive
 
       - name: Configure Telegram API Keys
         env:
