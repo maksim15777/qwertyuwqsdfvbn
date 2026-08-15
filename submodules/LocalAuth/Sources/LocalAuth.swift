@@ -19,7 +19,7 @@ public struct LocalAuth {
                     return .touchId
                 case .none:
                     return nil
-                @unknown default:
+                default:
                     return nil
                 }
             } else {
