@@ -38,9 +38,9 @@ jobs:
           if [ ! -f "build-system/bazel-rules/rules_apple/WORKSPACE" ]; then rm -rf build-system/bazel-rules/rules_apple && git clone --branch 2.3.0 --depth 1 https://github.com/bazelbuild/rules_apple.git build-system/bazel-rules/rules_apple; fi
           if [ ! -f "build-system/bazel-rules/rules_swift/WORKSPACE" ]; then rm -rf build-system/bazel-rules/rules_swift && git clone --branch 1.5.0 --depth 1 https://github.com/bazelbuild/rules_swift.git build-system/bazel-rules/rules_swift; fi
           if [ ! -f "build-system/bazel-rules/apple_support/WORKSPACE" ]; then rm -rf build-system/bazel-rules/apple_support && git clone --branch 1.5.0 --depth 1 https://github.com/bazelbuild/apple_support.git build-system/bazel-rules/apple_support; fi
-          if [ ! -f "build-system/bazel-rules/rules_xcodeproj/WORKSPACE" ]; then rm -rf build-system/bazel-rules/rules_xcodeproj && git clone --branch 1.4.0 --depth 1 https://github.com/MobileNativeFoundation/rules_xcodeproj.git build-system/bazel-rules/rules_xcodeproj; fi
+          if [ ! -f "build-system/bazel-rules/rules_xcodeproj/WORKSPACE" ]; then rm -rf build-system/bazel-rules/rules_xcodeproj && git clone --depth 1 https://github.com/MobileNativeFoundation/rules_xcodeproj.git build-system/bazel-rules/rules_xcodeproj; fi
           if [ ! -f "third-party/libvpx/libvpx/configure" ]; then rm -rf third-party/libvpx/libvpx && git clone --depth 1 https://github.com/webmproject/libvpx.git third-party/libvpx/libvpx; fi
-          if [ ! -f "third-party/webrtc/webrtc/BUILD.gn" ]; then rm -rf third-party/webrtc/webrtc && git clone --depth 1 https://github.com/TelegramMessenger/webrtc.git third-party/webrtc/webrtc; fi
+          if [ ! -f "third-party/webrtc/webrtc/BUILD.gn" ]; then rm -rf third-party/webrtc/webrtc && git clone --depth 1 https://github.com/ali-fareed/webrtc.git third-party/webrtc/webrtc; fi
           if [ ! -f "submodules/rlottie/rlottie/CMakeLists.txt" ]; then rm -rf submodules/rlottie/rlottie && git clone --depth 1 https://github.com/TelegramMessenger/rlottie.git submodules/rlottie/rlottie; fi
           if [ ! -f "submodules/TgVoipWebrtc/tgcalls/BUILD" ]; then rm -rf submodules/TgVoipWebrtc/tgcalls && git clone --depth 1 https://github.com/TelegramMessenger/tgcalls.git submodules/TgVoipWebrtc/tgcalls; fi
 
