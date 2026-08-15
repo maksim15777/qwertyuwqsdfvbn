@@ -190,6 +190,14 @@ def copy_profiles_from_directory(source_path, destination_path, team_id, bundle_
                     shutil.copyfile(file_path, destination_path + '/' + profile_name_mapping[profile_base_name] + '.mobileprovision')
                 else:
                     print('Warning: skipping provisioning profile at {} with bundle_id {} (base_name {})'.format(file_path, profile_name, profile_base_name))
+            else:
+                # Fallback for fake codesigning profiles with custom bundle IDs
+                target_file_name = 'Telegram.mobileprovision'
+                for base, target in profile_name_mapping.items():
+                    if base != '' and base.lower() in file_name.lower():
+                        target_file_name = target + '.mobileprovision'
+                        break
+                shutil.copyfile(file_path, destination_path + '/' + target_file_name)
 
 
 def resolve_aps_environment_from_directory(source_path, team_id, bundle_id):
