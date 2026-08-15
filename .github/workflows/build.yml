@@ -35,10 +35,10 @@ jobs:
           cd /Users/Shared/telegram-ios
           git submodule sync --recursive || true
           git submodule update --init --recursive --force || true
-          [ -f "build-system/bazel-rules/rules_apple/BUILD" ] || (rm -rf build-system/bazel-rules/rules_apple && git clone https://github.com/bazelbuild/rules_apple.git build-system/bazel-rules/rules_apple)
-          [ -f "build-system/bazel-rules/rules_swift/BUILD" ] || (rm -rf build-system/bazel-rules/rules_swift && git clone https://github.com/bazelbuild/rules_swift.git build-system/bazel-rules/rules_swift)
-          [ -f "build-system/bazel-rules/apple_support/BUILD" ] || (rm -rf build-system/bazel-rules/apple_support && git clone https://github.com/bazelbuild/apple_support.git build-system/bazel-rules/apple_support)
-          [ -f "build-system/bazel-rules/rules_xcodeproj/BUILD" ] || (rm -rf build-system/bazel-rules/rules_xcodeproj && git clone https://github.com/MobileNativeFoundation/rules_xcodeproj.git build-system/bazel-rules/rules_xcodeproj)
+          if [ ! -f "build-system/bazel-rules/rules_apple/WORKSPACE" ]; then rm -rf build-system/bazel-rules/rules_apple && git clone --branch 2.3.0 --depth 1 https://github.com/bazelbuild/rules_apple.git build-system/bazel-rules/rules_apple; fi
+          if [ ! -f "build-system/bazel-rules/rules_swift/WORKSPACE" ]; then rm -rf build-system/bazel-rules/rules_swift && git clone --branch 1.5.0 --depth 1 https://github.com/bazelbuild/rules_swift.git build-system/bazel-rules/rules_swift; fi
+          if [ ! -f "build-system/bazel-rules/apple_support/WORKSPACE" ]; then rm -rf build-system/bazel-rules/apple_support && git clone --branch 1.5.0 --depth 1 https://github.com/bazelbuild/apple_support.git build-system/bazel-rules/apple_support; fi
+          if [ ! -f "build-system/bazel-rules/rules_xcodeproj/WORKSPACE" ]; then rm -rf build-system/bazel-rules/rules_xcodeproj && git clone --branch 1.4.0 --depth 1 https://github.com/MobileNativeFoundation/rules_xcodeproj.git build-system/bazel-rules/rules_xcodeproj; fi
 
       - name: Configure Telegram API Keys
         env:
